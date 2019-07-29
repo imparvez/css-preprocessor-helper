@@ -1,0 +1,37 @@
+// Helper no: 1
+.pseudo(@display: block, @pos: absolute, @content: '') {
+    display: @display;
+    position: @pos;
+    content: @content;
+}
+
+.container::before {
+    .pseudo(inline-block, relative, "#");
+}
+
+.wrapper::after {
+    .pseudo();
+}
+
+// Helper no: 2
+.clearfix() {
+    *zoom: 1;
+
+    &::before,
+    &::after {
+        content: "";
+        display: table;
+    }
+    &::after {
+        clear: both;
+    }
+}
+
+.container {
+    .clearfix();
+
+    & > div {
+        width: 500px;
+        float: left;
+    }
+}
